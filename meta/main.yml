@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Jason Johnson
-  description: A role to install Beanstalkd
+  description: An Ansible role for the installation of the Beanstalkd network work queue, http://kr.github.io/beanstalkd/
   license: MIT
   min_ansible_version: 1.4
   #
