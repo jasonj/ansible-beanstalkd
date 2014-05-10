@@ -1,7 +1,7 @@
 Beanstalkd
 ========
 
-This Ansible role lets you install Beanstalkd on the specified host
+An Ansible role for the installation of the Beanstalkd network work queue, http://kr.github.io/beanstalkd/
 
 Requirements
 ------------
