@@ -1,0 +1,20 @@
+---
+
+  - name: Install Beanstalkd Package
+    action: apt pkg=$item state=latest
+    with_items:
+      - beanstalkd
+    sudo: yes
+
+  - name: edit /etc/default/beanstalkd DAEMON_OPTS, set listener info and persistent storage options
+    lineinfile: >
+      dest=/etc/default/beanstalkd 
+      regexp='^#?DAEMON_OPTS' 
+      line='DAEMON_OPTS="-l {{ beanstalkdListenAddress }} -p {{ beanstalkdListenPort }} -b {{ beanstalkdPersistentStorageLocation }}"' 
+    notify: restart beanstalkd
+    sudo: yes
+
+  - name: edit /etc/default/beanstalkd START, enable startup
+    lineinfile: dest=/etc/default/beanstalkd regexp='^#?START' line='START=yes'
+    notify: restart beanstalkd
+    sudo: yes
