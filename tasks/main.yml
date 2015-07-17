@@ -1,7 +1,7 @@
 ---
 
   - name: Install Beanstalkd Package
-    action: apt pkg=$item state=latest
+    action: apt pkg={{ item }} state=latest
     with_items:
       - beanstalkd
     sudo: yes
