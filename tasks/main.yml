@@ -14,6 +14,22 @@
     notify: restart beanstalkd
     sudo: yes
 
+  - name: edit /etc/default/beanstalkd BEANSTALKD_LISTEN_ADDR set listener address
+    lineinfile: >
+      dest=/etc/default/beanstalkd
+      regexp='^#?BEANSTALKD_LISTEN_ADDR'
+      line='BEANSTALKD_LISTEN_ADDR={{ beanstalkdListenAddress }}'
+    notify: restart beanstalkd
+    sudo: yes
+
+  - name: edit /etc/default/beanstalkd BEANSTALKD_LISTEN_PORT, set listener port
+    lineinfile: >
+      dest=/etc/default/beanstalkd
+      regexp='^#?BEANSTALKD_LISTEN_PORT'
+      line='BEANSTALKD_LISTEN_PORT={{ beanstalkdListenPort }}'
+    notify: restart beanstalkd
+    sudo: yes
+
   - name: edit /etc/default/beanstalkd START, enable startup
     lineinfile: dest=/etc/default/beanstalkd regexp='^#?START' line='START=yes'
     notify: restart beanstalkd
